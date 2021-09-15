@@ -64,7 +64,6 @@ namespace Tamagochi
                             System.Console.WriteLine("Teach " + tamagochi.name + " a new word");
                             string newWord = Console.ReadLine();
                             tamagochi.Teach(newWord);
-                            System.Console.WriteLine(tamagochi.name + " has learned " + newWord);
                             break;
                         case 4:
                             tamagochi.PrintStats();
@@ -83,7 +82,8 @@ namespace Tamagochi
                 tamagochi.Tick();
             }
 
-            System.Console.WriteLine(choiceInt);
+            Console.Clear();
+            System.Console.WriteLine(tamagochi.name + " Died due to your poor parenting");
             Console.ReadLine();
 
         }

@@ -9,7 +9,7 @@ namespace Tamagochi
 
         int hunger = 0;
         int boredom = 0;
-        List<string> words = new List<string>() { "Hi" };
+        List<string> words = new List<string>();
         bool isAlive = true;
         Random generator = new Random();
         public string name;
@@ -21,9 +21,17 @@ namespace Tamagochi
         }
         public void Hi()
         {
-            int word = generator.Next(0, words.Count);
-            System.Console.WriteLine(words[word]);
-            ReduceBoredom();
+
+            if (words.Count > 0)
+            {
+                int word = generator.Next(0, words.Count);
+                System.Console.WriteLine(name + ": " + words[word]);
+                ReduceBoredom();
+            }
+            else
+            {
+                System.Console.WriteLine(name + " does not know any words yet");
+            }
         }
         public void Tick()
         {
@@ -37,13 +45,17 @@ namespace Tamagochi
         }
         public void Teach(string word)
         {
+
             words.Add(word);
+            System.Console.WriteLine(name + " has learned " + word);
             ReduceBoredom();
         }
         public void PrintStats()
         {
             System.Console.WriteLine("Hunger = " + hunger);
             System.Console.WriteLine("Boredom = " + boredom);
+            hunger--;
+            boredom--;
         }
         public bool GetAlive()
         {
